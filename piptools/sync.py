@@ -8,7 +8,7 @@ from subprocess import run  # nosec
 from typing import Deque, Iterable, Mapping, ValuesView
 
 import click
-from pip._internal.commands.freeze import DEV_PKGS
+from pip._internal.commands.freeze import _dev_pkgs
 from pip._internal.req import InstallRequirement
 from pip._internal.utils.compat import stdlib_pkgs
 
@@ -31,7 +31,7 @@ PACKAGES_TO_IGNORE = [
     "pip-review",
     "pkg-resources",
     *stdlib_pkgs,
-    *DEV_PKGS,
+    *_dev_pkgs(),
 ]
 
 

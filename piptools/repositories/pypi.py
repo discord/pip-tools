@@ -11,6 +11,7 @@ from typing import Any, BinaryIO, ContextManager, Iterator, NamedTuple
 
 from click import progressbar
 from pip._internal.cache import WheelCache
+from pip._internal.cli.cmdoptions import make_target_python
 from pip._internal.commands import create_command
 from pip._internal.commands.install import InstallCommand
 from pip._internal.index.package_finder import PackageFinder
@@ -75,7 +76,7 @@ class PyPIRepository(BaseRepository):
         self._options: optparse.Values = options
         self._session = self.command._build_session(options)
         self._finder = self.command._build_package_finder(
-            options=options, session=self.session
+            options=options, session=self.session, target_python=make_target_python(options),
         )
 
         # Caches

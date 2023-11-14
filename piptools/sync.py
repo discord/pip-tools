@@ -162,10 +162,6 @@ def diff(
         if key not in satisfied and requirement.match_markers():
             to_install.add(requirement)
 
-    # It's important we do this before removing the `pkgs_to_ignore` so that we can
-    # correctly no-op if any of those packages VCS and listed in our inputs.
-    _ignore_same_revision_vcs_packages(to_install, to_uninstall, installed_dists)
-
     # Make sure to not uninstall any packages that should be ignored
     to_uninstall -= set(pkgs_to_ignore)
 
